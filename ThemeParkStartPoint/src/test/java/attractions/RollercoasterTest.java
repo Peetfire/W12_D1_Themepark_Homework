@@ -15,9 +15,9 @@ public class RollercoasterTest {
     public void setUp() {
 
         rollerCoaster = new RollerCoaster("Blue Ridge", 10);
-        visitor1 = new Visitor(21, 1.8, 20.0);
+        visitor1 = new Visitor(21, 2.0, 20.0);
         visitor2 = new Visitor(12, 1.45, 20.0);
-        visitor3 = new Visitor(11, 1.8, 20.0);
+        visitor3 = new Visitor(11, 2.2, 20.0);
         visitor4 = new Visitor(14, 1.1, 20.0);
     }
 
@@ -54,5 +54,20 @@ public class RollercoasterTest {
     @Test
     public void canNotRideOverAgeUnderHeight(){
         assertFalse(rollerCoaster.isAllowedTo(visitor3));
+    }
+
+    @Test
+    public void canGetRideCostUnderHeight(){
+        assertEquals(8.40, rollerCoaster.priceFor(visitor2), 0.0);
+    }
+
+    @Test
+    public void canGetRideCostExactHeight(){
+        assertEquals(16.8, rollerCoaster.priceFor(visitor1), 0.0);
+    }
+
+    @Test
+    public void canGetRideCostUOverHeight(){
+        assertEquals(16.8, rollerCoaster.priceFor(visitor3), 0.0);
     }
 }
